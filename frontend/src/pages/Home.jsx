@@ -1,21 +1,23 @@
 const Home = () => {
   return (
-    <div>
-      <div style={{ textAlign: "center", marginTop: "100px", fontSize: "3rem" }}>
-        <h1>Welcome to My App</h1>
-        <p style={{ fontSize: "1.5rem", marginTop: "30px" }}>Please login to continue.</p>
-      </div>
-      <div style={{ textAlign: "center", marginTop: "30px" }}>
-      <p style={{ marginTop: "50px" }}>
-        <a href="/user-profile" style={{ fontSize: "1.2rem", color: "blue", textDecoration: "underline" }}>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-white px-6 text-center">
+      <h1 className="text-5xl font-bold text-blue-600 mb-4">Welcome to My App</h1>
+      <p className="text-lg text-gray-700 mb-8">Please log in to continue and explore the dashboard.</p>
+
+      <div className="space-y-4">
+        <a
+          href="/user-profile"
+          className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg text-lg font-medium hover:bg-blue-700 transition"
+        >
           Go to User Dashboard
         </a>
-      </p>
-      <p style={{ marginTop: "20px" }}>
-        <a href="/admin-dashboard" style={{ fontSize: "1.2rem", color: "blue", textDecoration: "underline"}}>
+        <br />
+        <a
+          href="/admin-dashboard"
+          className="inline-block bg-gray-200 text-gray-800 px-6 py-3 rounded-lg text-lg font-medium hover:bg-gray-300 transition"
+        >
           Go to Admin Dashboard
         </a>
-      </p>
       </div>
     </div>
   );

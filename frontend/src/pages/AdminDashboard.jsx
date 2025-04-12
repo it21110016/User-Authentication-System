@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../context/useAuth";
 import apiRequest from "../utils/api";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserShield, faEnvelope, faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 const AdminDashboard = () => {
   const { logout } = useAuth();
@@ -16,8 +18,8 @@ const AdminDashboard = () => {
         setUser(data.user);
       } catch (err) {
         console.error("Unauthorized", err);
-        logout(); // updates context + clears tokens
-        navigate('/login'); // redirect to login page
+        logout();
+        navigate("/login");
       } finally {
         setLoading(false);
       }
@@ -26,16 +28,33 @@ const AdminDashboard = () => {
     fetchAdmin();
   }, [logout, navigate]);
 
-  if (loading) return <p className="text-center mt-10">Loading...</p>;
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-gray-100">
+        <FontAwesomeIcon icon={faSpinner} spin size="2x" className="text-blue-500" />
+        <span className="ml-2 text-gray-700">Loading Admin Dashboard...</span>
+      </div>
+    );
+  }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-md w-half">
-        <h2 className="text-2xl font-bold text-center mb-4">Welcome to Admin Dashboard</h2>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-100 to-blue-200 px-4">
+      <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md text-gray-800">
+        <h2 className="text-3xl font-bold text-center mb-6 flex items-center justify-center gap-2 text-blue-600">
+          <FontAwesomeIcon icon={faUserShield} />
+          Admin Dashboard
+        </h2>
+
         {user && (
-          <div className="text-center">
-            <p><strong>Name:</strong> {user.name}</p>
-            <p><strong>Email:</strong> {user.email}</p>
+          <div className="space-y-4">
+            <div className="flex items-center space-x-3">
+              <FontAwesomeIcon icon={faUserShield} className="text-blue-500" />
+              <p><span className="font-semibold">Name:</span> {user.name}</p>
+            </div>
+            <div className="flex items-center space-x-3">
+              <FontAwesomeIcon icon={faEnvelope} className="text-blue-500" />
+              <p><span className="font-semibold">Email:</span> {user.email}</p>
+            </div>
           </div>
         )}
       </div>
