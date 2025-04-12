@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import AuthService from "../services/AuthService";
+import useAuth from "../context/useAuth";
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const { login } = useAuth();
 
   // Handle input change
   const handleChange = (e) => {
@@ -21,7 +22,7 @@ const Login = () => {
 
     try {
       setLoading(true);
-      await AuthService.login(formData.email, formData.password);
+      await login(formData.email, formData.password);
       const role = localStorage.getItem("userRole");
       if (role === "admin") {
         window.location.replace("/admin-dashboard");

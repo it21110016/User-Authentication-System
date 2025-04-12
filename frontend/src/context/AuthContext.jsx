@@ -7,14 +7,22 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // Decode token and set user
+  const decodeAndSetUser = (token) => {
+    const decoded = JSON.parse(atob(token.split(".")[1]));
+    setUser({
+      name: decoded.name,
+      email: decoded.email,
+      role: decoded.role,
+    });
+  };
+
   useEffect(() => {
     const loadUser = async () => {
       try {
         const token = localStorage.getItem("accessToken");
         if (!token) throw new Error("No token found");
-
-        const decodedUser = JSON.parse(atob(token.split(".")[1])); // Decode JWT
-        setUser({ role: decodedUser.role, email: decodedUser.email });
+        decodeAndSetUser(token);
       } catch {
         setUser(null);
       } finally {
@@ -27,7 +35,11 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     const data = await AuthService.login(email, password);
-    setUser({ role: data.role, email: data.email });
+    decodeAndSetUser(data.accessToken);
+  };
+
+  const register = async (name, email, password) => {
+     await AuthService.register(name, email, password);
   };
 
   const logout = async () => {
@@ -36,7 +48,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, loading }}>
+    <AuthContext.Provider value={{ user, login, register, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );

@@ -1,4 +1,4 @@
-import AuthService from "./AuthService";
+import AuthService from "../services/AuthService";
 
 const apiRequest = async (url, options = {}) => {
   let token = localStorage.getItem("accessToken");

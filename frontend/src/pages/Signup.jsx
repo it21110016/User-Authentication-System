@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import AuthService from "../services/AuthService";
+import useAuth from "../context/useAuth";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ const Signup = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-
+  const { register } = useAuth();
 
   // Handle input change
   const handleChange = (e) => {
@@ -36,7 +36,7 @@ const Signup = () => {
 
     try {
       setLoading(true);
-      await AuthService.register(
+      await register(
         formData.name,
         formData.email,
         formData.password

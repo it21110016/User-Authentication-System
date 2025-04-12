@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import AuthService from "../services/AuthService";
-import apiRequest from "../services/api";
+import useAuth from "../context/useAuth";
+import apiRequest from "../utils/api";
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { logout } = useAuth();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -15,15 +16,15 @@ const Dashboard = () => {
         setUser(data.user);
       } catch (err) {
         console.error("Unauthorized", err);
-        AuthService.logout();
-        navigate('/access-denied');
+        logout();
+        navigate('/login'); // redirect to login page
       } finally {
         setLoading(false);
       }
     };
 
     fetchUser();
-  }, [navigate]);
+  }, [navigate, logout]);
 
   if (loading) return <p className="text-center mt-10">Loading...</p>;
 

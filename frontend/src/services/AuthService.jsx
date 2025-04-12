@@ -4,7 +4,6 @@ const AuthService = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, email, password }),
-      credentials: "include", // Includes cookies for refresh token
     });
 
     if (!response.ok) {
