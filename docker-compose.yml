@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  gateway:
+    build: ./api-gateway
+    container_name: api-gateway_container
+    ports:
+      - "3000:3000"
+    depends_on:
+      - auth
+
+  auth:
+    build: ./auth-service
+    container_name: auth-service_container
+    ports:
+      - "5000:5000"
+    depends_on:
+      - gateway
+
+  frontend:
+    build: ./frontend
+    container_name: frontend_container
+    ports:
+      - "5173:5173"
+    depends_on:
+      - gateway
