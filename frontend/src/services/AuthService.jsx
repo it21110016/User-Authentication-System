@@ -1,6 +1,6 @@
 const AuthService = {
   register: async (name, email, password) => {
-    const response = await fetch("http://localhost:5000/api/v1/auth/register", {
+    const response = await fetch("http://localhost:3000/api/v1/auth/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, email, password }),
@@ -14,7 +14,7 @@ const AuthService = {
   },
 
   login: async (email, password) => {
-    const response = await fetch("http://localhost:5000/api/v1/auth/login", {
+    const response = await fetch("http://localhost:3000/api/v1/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
@@ -30,7 +30,7 @@ const AuthService = {
   },
 
   refreshToken: async () => {
-    const response = await fetch("http://localhost:5000/api/v1/auth/refresh-token", {
+    const response = await fetch("http://localhost:3000/api/v1/auth/refresh-token", {
       method: "POST",
       credentials: "include", // Include refresh token cookie
     });
@@ -43,7 +43,7 @@ const AuthService = {
   },
 
   logout: async () => {
-    await fetch("http://localhost:5000/api/v1/auth/logout", {
+    await fetch("http://localhost:3000/api/v1/auth/logout", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",

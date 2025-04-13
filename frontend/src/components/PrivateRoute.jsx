@@ -2,7 +2,7 @@ import { Navigate, Outlet } from "react-router-dom";
 
 const PrivateRoute = ({ allowedRoles }) => {
   const token = localStorage.getItem("accessToken");
-  const userRole = localStorage.getItem("userRole"); // Store user role on login
+  const userRole = localStorage.getItem("userRole");
 
   if (!token) return <Navigate to="/login" />;
 
