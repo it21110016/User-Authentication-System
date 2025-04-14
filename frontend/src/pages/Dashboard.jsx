@@ -4,6 +4,7 @@ import useAuth from "../context/useAuth";
 import apiRequest from "../utils/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faEnvelope, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { user_api } from "../utils/url";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const data = await apiRequest("http://localhost:5000/api/v1/user/user-profile");
+        const data = await apiRequest(`${user_api}/user-profile`);
         setUser(data.user);
       } catch (err) {
         console.error("Unauthorized", err);
