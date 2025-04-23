@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   gateway:
-    build: ./api-gateway
+    image: pasindukushan/api-gateway:latest
     container_name: api-gateway_container
     ports:
       - "3000:3000"
@@ -10,13 +10,13 @@ services:
       - auth
 
   auth:
-    build: ./auth-service
+    image: pasindukushan/auth-service:latest
     container_name: auth-service_container
     ports:
       - "5000:5000"
 
   frontend:
-    build: ./frontend
+    image: pasindukushan/frontend:latest
     container_name: frontend_container
     ports:
       - "5173:5173"
