@@ -31,11 +31,12 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        working-directory: ./auth-service
 
       - name: Run SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         with:
-          projectBaseDir: .
+          projectBaseDir: ./auth-service
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_PROJECT_KEY: User-Authentication-System
