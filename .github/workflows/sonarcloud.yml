@@ -34,10 +34,15 @@ jobs:
         working-directory: ./auth-service
 
       - name: Run SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
+        uses: SonarSource/sonarqube-scan-action@v5.0.0
         with:
-          projectBaseDir: ./auth-service
+          args: >
+            -Dsonar.projectKey=it21110016_User-Authentication-System
+            -Dsonar.organization=it21110016
+            -Dsonar.sources=.
+            -Dsonar.host.url=https://sonarcloud.io
+            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+            -Dsonar.projectBaseDir=./auth-service
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_PROJECT_KEY: it21110016_User-Authentication-System
-          SONAR_ORGANIZATION: it21110016
+
