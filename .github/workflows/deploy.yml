@@ -22,8 +22,8 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - name: Update ECS Service
-        uses: aws-actions/amazon-ecs-update-service@v1
+      - name: Deploy ECS Task Definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           cluster: user-auth-cluster
           service: user-auth-task-service-pylwyhdu
