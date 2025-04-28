@@ -22,9 +22,10 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - name: Force new deployment on ECS service
-        uses: aws-actions/amazon-ecs-update-service@v2
-        with:
-          cluster: user-auth-cluster
-          service: user-auth-task-service-pylwyhdu
-          force-new-deployment: true
+      - name: Force new ECS deployment
+        run: |
+          aws ecs update-service \
+            --cluster user-auth-cluster \
+            --service user-auth-task-service-pylwyhdu \
+            --force-new-deployment \
+            --region us-east-1
