@@ -19,7 +19,7 @@ app.use(cookieParser());
 
 // ✅ Restrict CORS for security
 const corsOptions = {
-  origin: [process.env.CLIENT_URL],
+  origin: [process.env.CLIENT_URL, process.env.API_GATEWAY_URL],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],

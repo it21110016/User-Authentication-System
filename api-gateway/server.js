@@ -13,7 +13,7 @@ app.use(morgan('dev'));
 
 // ✅ Restrict CORS for security
 const corsOptions = {
-  origin: [process.env.CLIENT_URL],
+  origin: [process.env.CLIENT_URL, process.env.AUTH_SERVICE_URL],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
