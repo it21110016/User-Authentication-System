@@ -22,10 +22,9 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - name: Force new ECS deployment
-        run: |
-          aws ecs update-service \
-            --cluster user-auth-cluster \
-            --service user-auth-task-service-pylwyhdu \
-            --force-new-deployment \
-            --region us-east-1
+      - name: Deploy new version on ECS Fargate
+        uses: aws-actions/amazon-ecs-deploy-service@v1
+        with:
+          cluster: user-auth-cluster
+          service: user-auth-task-service-pylwyhdu
+          force-new-deployment: true
