@@ -1,2 +1,2 @@
-export const auth_api =  "http://3.81.218.156:3000/api/v1/auth";
-export const user_api =  "http://3.81.218.156:5000/api/v1/user";
+export const auth_api =  "http://18.234.172.162:3000/api/v1/auth";
+export const user_api =  "http://18.234.172.162:5000/api/v1/user";
