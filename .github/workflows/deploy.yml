@@ -19,7 +19,7 @@ jobs:
         uses: aws-actions/amazon-ecs-update-service@v2
         with:
           cluster: user-auth-cluster
-          service: user-auth-service
+          service: user-auth-task-service-pylwyhdu
           force-new-deployment: true
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
