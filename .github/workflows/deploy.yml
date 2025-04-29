@@ -24,17 +24,8 @@ jobs:
 
       - name: Force new ECS deployment
         run: |
-          # Get current network configuration
-          SERVICE_CONFIG=$(aws ecs describe-services \
-            --cluster user-auth-cluster \
-            --services user-auth-task-service-pylwyhdu \
-            --region us-east-1 \
-            --query 'services[0].networkConfiguration')
-    
-          # Force new deployment with existing network config
           aws ecs update-service \
             --cluster user-auth-cluster \
             --service user-auth-task-service-pylwyhdu \
             --force-new-deployment \
-            --network-configuration "$SERVICE_CONFIG" \
             --region us-east-1
