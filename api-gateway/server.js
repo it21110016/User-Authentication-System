@@ -11,10 +11,15 @@ const PORT = process.env.PORT;
 app.use(express.json());
 app.use(morgan('dev'));
 
-// ✅ Restrict CORS for security
 const corsOptions = {
-  origin: "*",
-  credentials: false,
+  origin: (origin, callback) => {
+    if (!origin || /^https?:\/\/(?:[0-9]{1,3}\.){3}[0-9]{1,3}(:\d+)?$/.test(origin) || /^https?:\/\/localhost(:\d+)?$/.test(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };
