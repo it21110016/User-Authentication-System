@@ -42,15 +42,15 @@ To design and deploy a secure and scalable **User Authentication Microservice** 
 ---
 ## 💻 Running Locally
 ✅ Prerequisites
-Node.js
-Docker & Docker Compose
-MongoDB (either locally or via MongoDB Atlas)
-.env file inside the /auth-service directory
+ - Node.js
+ - Docker & Docker Compose
+ - MongoDB (either locally or via MongoDB Atlas)
+ - .env file inside the /auth-service directory
 
 ### 🚀 Steps to Run
 Clone the repository:
-git clone https://github.com/your-username/your-repo-name.git
-cd User-Authentication-System
+ - git clone https://github.com/it21110016/User-Authentication-System.git
+ - cd User-Authentication-System
 
 Run the services using Docker Compose:
-docker-compose up --build
+ - docker-compose up --build
